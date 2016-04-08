@@ -50,6 +50,14 @@ class TestCvCapture < OpenCVTestCase
     # }
   end
 
+  def test_close
+    cap1 = CvCapture.open(AVI_SAMPLE)
+    cap1.close
+    assert_raise(IOError) do
+      cap1.query
+    end
+  end
+
   def test_grab
     assert(@cap.grab)
   end
