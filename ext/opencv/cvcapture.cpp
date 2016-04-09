@@ -27,8 +27,12 @@ rb_class()
 void
 cvcapture_free(void *ptr)
 { 
-  if (ptr)
-    cvReleaseCapture((CvCapture**)&ptr);
+  if (ptr) {
+    sCvCapture* scap = (sCvCapture*)ptr;
+    if (scap->opened)
+      cvReleaseCapture(&scap->ptr);
+    delete scap;
+  }
 }
 
 /*
@@ -49,6 +53,7 @@ rb_open(int argc, VALUE *argv, VALUE self)
   VALUE device;
   rb_scan_args(argc, argv, "01", &device);
   CvCapture *capture = 0;
+  sCvCapture *scap = new sCvCapture();
   try {
     switch (TYPE(device)) {
     case T_STRING:
@@ -74,7 +79,27 @@ rb_open(int argc, VALUE *argv, VALUE self)
   }
   if (!capture)
     rb_raise(rb_eStandardError, "Invalid capture format.");
-  return Data_Wrap_Struct(rb_klass, 0, cvcapture_free, capture);
+  scap->ptr = capture;
+  scap->opened = true;
+  return Data_Wrap_Struct(rb_klass, 0, cvcapture_free, scap);
+}
+
+/*
+ * Releases an opened video file or a capturing device
+ * @return [boolean] False if the device was already closed
+ */
+
+VALUE
+rb_close(VALUE self)
+{
+  sCvCapture *scap;
+  Data_Get_Struct(self, sCvCapture, scap);
+  if (scap->opened) {
+    scap->opened = false;
+    cvReleaseCapture(&scap->ptr);
+    return true;
+  } else
+    return false;
 }
 
 /*
@@ -570,6 +595,7 @@ init_ruby_class()
   rb_hash_aset(video_interface, ID2SYM(rb_intern("quicktime")), INT2FIX(CV_CAP_QT));
   
   rb_define_singleton_method(rb_klass, "open", RUBY_METHOD_FUNC(rb_open), -1);
+  rb_define_method(rb_klass, "close", RUBY_METHOD_FUNC(rb_close), 0);
   
   rb_define_method(rb_klass, "grab", RUBY_METHOD_FUNC(rb_grab), 0);
   rb_define_method(rb_klass, "retrieve", RUBY_METHOD_FUNC(rb_retrieve), 0);

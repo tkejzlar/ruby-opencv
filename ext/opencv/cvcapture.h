@@ -16,6 +16,12 @@
 #define __NAMESPACE_END_CVCAPTURE }
 
 __NAMESPACE_BEGIN_OPENCV
+
+typedef struct {
+  CvCapture* ptr;
+  bool opened;
+} sCvCapture;
+
 __NAMESPACE_BEGIN_CVCAPTURE
 
 
@@ -25,6 +31,8 @@ void init_ruby_class();
 
 void cvcapture_free(void *ptr);
 VALUE rb_open(int argc, VALUE *argv, VALUE klass);
+
+VALUE rb_close(VALUE self);
 
 VALUE rb_grab(VALUE self);
 VALUE rb_retrieve(VALUE self);
@@ -62,9 +70,11 @@ __NAMESPACE_END_CVCAPTURE
 
 inline CvCapture*
 CVCAPTURE(VALUE object) {
-  CvCapture *ptr;
-  Data_Get_Struct(object, CvCapture, ptr);
-  return ptr;
+  sCvCapture *scap;
+  Data_Get_Struct(object, sCvCapture, scap);
+  if (!scap->opened)
+    rb_raise(rb_eIOError, "Resource is not available!");
+  return scap->ptr;
 }
 
 __NAMESPACE_END_OPENCV
