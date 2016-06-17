@@ -292,9 +292,42 @@ rb_point_polygon_test(VALUE self, VALUE point, VALUE measure_dist)
   return rb_float_new(dist);
 }
 
+/*
+ * call-seq:
+ *   match_shapes(object, method) -> float
+ *
+ * Compares two shapes(self and object). <i>object</i> should be CvContour.
+ *
+ * A - object1, B - object2:
+ * * method=CV_CONTOURS_MATCH_I1
+ *     I1(A,B)=sumi=1..7abs(1/mAi - 1/mBi)
+ * * method=CV_CONTOURS_MATCH_I2
+ *     I2(A,B)=sumi=1..7abs(mAi - mBi)
+ * * method=CV_CONTOURS_MATCH_I3
+ *     I3(A,B)=sumi=1..7abs(mAi - mBi)/abs(mAi)
+ */
+VALUE
+rb_match_shapes(int argc, VALUE *argv, VALUE self)
+{
+  VALUE object, method, param;
+  rb_scan_args(argc, argv, "21", &object, &method, &param);
+  int method_flag = CVMETHOD("COMPARISON_METHOD", method);
+  if (!rb_obj_is_kind_of(object, cCvContour::rb_class()))
+    rb_raise(rb_eTypeError, "argument 1 (shape) should be %s",
+        rb_class2name(cCvContour::rb_class()));
+  double result = 0;
+  try {
+    result = cvMatchShapes(CVARR(self), CVARR(object), method_flag);
+  }
+  catch (cv::Exception& e) {
+    raise_cverror(e);
+  }
+  return rb_float_new(result);
+}
+
 VALUE new_object()
 {  
-  VALUE object = rb_allocate(rb_klass);
+VALUE object = rb_allocate(rb_klass);
   rb_initialize(0, NULL, object);
   return object;
 }
