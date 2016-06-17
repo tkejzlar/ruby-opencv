@@ -376,6 +376,7 @@ init_ruby_class()
   rb_define_method(rb_klass, "in?", RUBY_METHOD_FUNC(rb_in_q), 1);
   rb_define_method(rb_klass, "measure_distance", RUBY_METHOD_FUNC(rb_measure_distance), 1);
   rb_define_method(rb_klass, "point_polygon_test", RUBY_METHOD_FUNC(rb_point_polygon_test), 2);
+  rb_define_method(rb_klass, "match_shapes", RUBY_METHOD_FUNC(rb_match_shapes), -1);
 }
 
 __NAMESPACE_END_CVCONTOUR
