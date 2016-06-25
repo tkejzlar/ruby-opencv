@@ -33,6 +33,9 @@ VALUE rb_in_q(VALUE self, VALUE point);
 VALUE rb_measure_distance(VALUE self, VALUE point);
 VALUE rb_point_polygon_test(VALUE self, VALUE point, VALUE measure_dist);
 
+/* Matching*/
+VALUE rb_match_shapes(int argc, VALUE *argv, VALUE self);
+
 VALUE new_object();
 __NAMESPACE_END_CVCONTOUR
 
