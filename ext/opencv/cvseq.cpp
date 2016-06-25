@@ -27,13 +27,48 @@ rb_class()
   return rb_klass;
 }
 
+int
+eltype2class(int eltype, VALUE* ret) {
+  int found = 1;
+
+  switch (eltype) {
+  case CV_SEQ_ELTYPE_POINT:
+    *ret = cCvPoint::rb_class();
+    break;
+  case CV_32FC2:
+    *ret = cCvPoint2D32f::rb_class();
+    break;
+  case CV_SEQ_ELTYPE_POINT3D:
+    *ret = cCvPoint3D32f::rb_class();
+    break;
+  case CV_SEQ_ELTYPE_CODE:
+  case CV_SEQ_ELTYPE_INDEX:
+    *ret = rb_cFixnum;
+    break;
+  case CV_SEQ_ELTYPE_PPOINT: // or CV_SEQ_ELTYPE_PTR:
+    // Not supported
+    rb_raise(rb_eArgError, "seq_flags %d is not supported.", eltype);
+    break;
+  default:
+    found = 0;
+    *ret = cCvPoint::rb_class();
+    break;
+  }
+
+  return found;
+}
+
 VALUE
 seqblock_class(void *ptr)
 {
-  VALUE klass;
-  if (!st_lookup(seqblock_klass_table, (st_data_t)ptr, (st_data_t*)&klass)) {
-    rb_raise(rb_eTypeError, "Invalid sequence error.");
+  VALUE klass = Qnil;
+  if (st_lookup(seqblock_klass_table, (st_data_t)ptr, (st_data_t*)&klass)) {
+    return klass;
   }
+
+  int eltype = CV_SEQ_ELTYPE((CvSeq*)ptr);
+  eltype2class(eltype, &klass);
+
   return klass;
 }
 
@@ -66,28 +101,8 @@ create_seq(int seq_flags, size_t header_size, VALUE storage_value)
   int eltype = seq_flags & CV_SEQ_ELTYPE_MASK;
   storage_value = CHECK_CVMEMSTORAGE(storage_value);
 
-  switch (eltype) {
-  case CV_SEQ_ELTYPE_POINT:
-    klass = cCvPoint::rb_class();
-    break;
-  case CV_32FC2:
-    klass = cCvPoint2D32f::rb_class();
-    break;
-  case CV_SEQ_ELTYPE_POINT3D:
-    klass = cCvPoint3D32f::rb_class();
-    break;
-  case CV_SEQ_ELTYPE_CODE:
-  case CV_SEQ_ELTYPE_INDEX:
-    klass = rb_cFixnum;
-    break;
-  case CV_SEQ_ELTYPE_PPOINT: // or CV_SEQ_ELTYPE_PTR:
-    // Not supported
-    rb_raise(rb_eArgError, "seq_flags %d is not supported.", eltype);
-    break;
-  default:
+  if (!eltype2class(eltype, &klass)) {
     seq_flags = CV_SEQ_ELTYPE_POINT | CV_SEQ_KIND_GENERIC;
-    klass = cCvPoint::rb_class();
-    break;
   }
 
   int mat_type = CV_MAT_TYPE(seq_flags);
