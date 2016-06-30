@@ -327,7 +327,7 @@ rb_match_shapes(int argc, VALUE *argv, VALUE self)
 
 VALUE new_object()
 {  
-VALUE object = rb_allocate(rb_klass);
+  VALUE object = rb_allocate(rb_klass);
   rb_initialize(0, NULL, object);
   return object;
 }
