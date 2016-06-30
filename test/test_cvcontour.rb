@@ -146,5 +146,26 @@ class TestCvContour < OpenCVTestCase
     assert_in_delta(31.01, contour.point_polygon_test(CvPoint.new(64, 64), 1), 0.01)
     assert_in_delta(31.01, contour.point_polygon_test(CvPoint.new(64, 64), true), 0.01)
   end
-end
 
+  def test_match_shapes
+    img1 = CvMat.load(FILENAME_CONTOURS, CV_LOAD_IMAGE_GRAYSCALE).threshold(127, 255, CV_THRESH_BINARY)
+    img2 = CvMat.load(FILENAME_LINES, CV_LOAD_IMAGE_GRAYSCALE).threshold(127, 255, CV_THRESH_BINARY)
+    c1 = img1.find_contours(mode: CV_RETR_EXTERNAL)
+    c2 = img2.find_contours(mode: CV_RETR_EXTERNAL)
+
+    [CV_CONTOURS_MATCH_I1, CV_CONTOURS_MATCH_I2, CV_CONTOURS_MATCH_I3].each { |method|
+      assert_in_delta(0, c1.match_shapes(c1, method), 0.01)
+      assert_in_delta(0, c1.match_shapes(c1, method, nil), 0.01)
+
+      assert(c1.match_shapes(c2, method) > 0)
+      assert(c1.match_shapes(c2, method, nil) > 0)
+    }
+
+    assert_raise(TypeError) {
+      c1.match_shapes(DUMMY_OBJ, CV_CONTOURS_MATCH_I1)
+    }
+    assert_raise(TypeError) {
+      c1.match_shapes(c2, DUMMY_OBJ)
+    }
+  end
+end

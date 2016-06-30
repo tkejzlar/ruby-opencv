@@ -14,6 +14,7 @@ class OpenCVTestCase < Test::Unit::TestCase
   FILENAME_FRUITS = SAMPLE_DIR + 'fruits.jpg'
   FILENAME_CONTOURS = File.expand_path(File.dirname(__FILE__)) + '/samples/contours.jpg'
   FILENAME_CHESSBOARD = SAMPLE_DIR + 'chessboard.jpg'
+  FILENAME_LINES = SAMPLE_DIR + 'lines.jpg'
   HAARCASCADE_FRONTALFACE_ALT = SAMPLE_DIR + 'haarcascade_frontalface_alt.xml.gz'
   AVI_SAMPLE = SAMPLE_DIR + 'movie_sample.avi'
 
