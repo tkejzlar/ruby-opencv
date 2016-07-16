@@ -17,7 +17,7 @@ Hoe.plugin :gemspec
 hoespec = Hoe.spec 'ruby-opencv' do |s|
   s.summary = 'OpenCV wrapper for Ruby'
   s.description = 'ruby-opencv is a wrapper of OpenCV for Ruby. It helps you to write computer vision programs (e.g. detecting faces from pictures) with Ruby.'
-  s.licenses = ['The BSD License']
+  s.licenses = ['BSD-3-Clause']
   s.developer('lsxi', 'masakazu.yonekura@gmail.com')
   s.developer('ser1zw', 'azariahsawtikes@gmail.com')
   s.developer('pcting', 'pcting@gmail.com')
