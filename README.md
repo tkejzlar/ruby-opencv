@@ -4,6 +4,7 @@ An OpenCV wrapper for Ruby.
 
 * Web site: <https://github.com/ruby-opencv/ruby-opencv>
 * Ruby 2.x and OpenCV 2.4.13 are supported.
+* [Documentation](http://www.rubydoc.info/gems/ruby-opencv/frames)
 
 ## Requirement
 
