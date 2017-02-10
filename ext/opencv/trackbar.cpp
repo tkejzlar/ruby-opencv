@@ -47,7 +47,7 @@ void trackbar_free(void *ptr) {
  *
  * Create new Trackbar.
  * <i>name</i> should be String.
- * <i>maxval</i> and <i>val</i> should be Fixnum.
+ * <i>maxval</i> and <i>val</i> should be Integer.
  * When Trackbar adjuster changed, block will be called.
  */
 VALUE rb_initialize(int argc, VALUE *argv, VALUE self) {

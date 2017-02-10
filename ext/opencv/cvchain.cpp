@@ -95,7 +95,7 @@ rb_set_origin(VALUE self, VALUE origin)
 /*
  * Returns the chain codes
  * @overload codes
- * @return [Array<Fixnum>] Chain codes
+ * @return [Array<Integer>] Chain codes
  * @opencv_func cvStartReadChainPoints
  * @opencv_func CV_READ_SEQ_ELEM
  */

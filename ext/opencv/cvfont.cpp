@@ -108,7 +108,7 @@ rb_initialize(int argc, VALUE *argv, VALUE self)
 /*
  * Returns font face
  * @overload face
- * @return [Fixnum] Font face
+ * @return [Integer] Font face
  */
 VALUE
 rb_face(VALUE self)
@@ -152,7 +152,7 @@ rb_shear(VALUE self)
 /*
  * Returns thickness
  * @overload thickness
- * @return [Fixnum] thickness
+ * @return [Integer] thickness
  */
 VALUE
 rb_thickness(VALUE self)
@@ -163,7 +163,7 @@ rb_thickness(VALUE self)
 /*
  * Returns line type
  * @overload line_type
- * @return [Fixnum] line_type
+ * @return [Integer] line_type
  */
 VALUE
 rb_line_type(VALUE self)

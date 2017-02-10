@@ -12,7 +12,7 @@
  * Document-class: OpenCV::CvTwoPoints
  *
  * This class means one twopoints on X axis Y axis. 
- * X and Y takes the value of the Fixnum. see also CvTwopoints2D32F
+ * X and Y takes the value of the Integer. see also CvTwopoints2D32F
  * 
  * C structure is here, very simple.
  *   typdef struct CvTwopoints {

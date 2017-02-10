@@ -42,7 +42,7 @@ class TestCvChain < OpenCVTestCase
     }
     chain = mat0.find_contours(:mode => CV_RETR_EXTERNAL, :method => CV_CHAIN_CODE)
     assert_equal(Array, chain.codes.class)
-    assert(chain.codes.all? { |a| (a.class == Fixnum) and (a >= 0 and a <= 7) })
+    assert(chain.codes.all? { |a| (Integer === a) and (a >= 0 and a <= 7) })
   end
 
   def test_points

@@ -193,7 +193,7 @@ rb_reset_roi(VALUE self)
 }
 
 /*
- * Return COI as Fixnum.
+ * Return COI as Integer.
  */
 VALUE
 rb_get_coi(VALUE self)
@@ -213,7 +213,7 @@ rb_get_coi(VALUE self)
  *   set_coi(coi)
  *   set_coi(coi){|image| ...}
  *
- * Set COI. <i>coi</i> should be Fixnum.
+ * Set COI. <i>coi</i> should be Integer.
  * Return self.
  */
 VALUE

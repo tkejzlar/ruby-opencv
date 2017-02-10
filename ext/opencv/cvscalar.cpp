@@ -53,7 +53,7 @@ rb_allocate(VALUE klass)
  * call-seq:
  *   new([d1][,d2][,d3][,d4])
  *
- * Create new Scalar. Argument should be Fixnum (or nil as 0).
+ * Create new Scalar. Argument should be Integer (or nil as 0).
  */
 VALUE
 rb_initialize(int argc, VALUE *argv, VALUE self)

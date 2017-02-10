@@ -18,7 +18,7 @@ class TestCvAvgComp < OpenCVTestCase
   end
 
   def test_neighbors
-    assert_equal(Fixnum, @avgcomp.neighbors.class)
+    assert_kind_of(Integer, @avgcomp.neighbors)
   end
 end
 
