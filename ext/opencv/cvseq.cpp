@@ -567,7 +567,7 @@ rb_insert(VALUE self, VALUE index, VALUE object)
   Check_Type(index, T_FIXNUM);
   CvSeq *seq = CVSEQ(self);
   VALUE klass = seqblock_class(seq);
-  if (CLASS_OF(object) != klass)
+  if (!rb_obj_is_kind_of(object, klass))
     rb_raise(rb_eTypeError, "arguments should be %s.", rb_class2name(klass));
   try {
     if (klass == rb_cInteger) {
