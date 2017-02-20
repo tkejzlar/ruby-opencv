@@ -12,7 +12,7 @@
  * Document-class: OpenCV::CvSize
  *
  * This class means one size on X axis Y axis. 
- * X and Y takes the value of the Fixnum.
+ * X and Y takes the value of the Integer.
  * 
  * C structure is here, very simple.
  *   typdef struct CvSize {

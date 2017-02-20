@@ -12,7 +12,7 @@
  * Document-class: OpenCV::CvPoint
  *
  * This class means one point on X axis Y axis. 
- * X and Y takes the value of the Fixnum. see also CvPoint2D32F
+ * X and Y takes the value of the Integer. see also CvPoint2D32F
  * 
  * C structure is here, very simple.
  *   typdef struct CvPoint {

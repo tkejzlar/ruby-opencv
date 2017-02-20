@@ -43,7 +43,7 @@ eltype2class(int eltype, VALUE* ret) {
     break;
   case CV_SEQ_ELTYPE_CODE:
   case CV_SEQ_ELTYPE_INDEX:
-    *ret = rb_cFixnum;
+    *ret = rb_cInteger;
     break;
   case CV_SEQ_ELTYPE_PPOINT: // or CV_SEQ_ELTYPE_PTR:
     // Not supported
@@ -132,7 +132,7 @@ class2seq_flags_value(VALUE klass) {
   else if (klass == cCvPoint3D32f::rb_class()) {
     seq_flags = CV_SEQ_ELTYPE_POINT3D;
   }
-  else if (klass == rb_cFixnum) {
+  else if (klass == rb_cInteger) {
     seq_flags = CV_SEQ_ELTYPE_INDEX;
   }
   else {
@@ -146,14 +146,14 @@ class2seq_flags_value(VALUE klass) {
  * Constructor
  *
  * @overload new(seq_flags, storage = nil)
- *   @param [Fixnum] seq_flags Flags of the created sequence, which are combinations of
+ *   @param [Integer] seq_flags Flags of the created sequence, which are combinations of
  *     the element types and sequence types.
  *     - Element type:
  *       - <tt>CV_SEQ_ELTYPE_POINT</tt>: {CvPoint}
  *       - <tt>CV_32FC2</tt>: {CvPoint2D32f}
  *       - <tt>CV_SEQ_ELTYPE_POINT3D</tt>: {CvPoint3D32f}
- *       - <tt>CV_SEQ_ELTYPE_INDEX</tt>: Fixnum
- *       - <tt>CV_SEQ_ELTYPE_CODE</tt>: Fixnum (Freeman code)
+ *       - <tt>CV_SEQ_ELTYPE_INDEX</tt>: Integer
+ *       - <tt>CV_SEQ_ELTYPE_CODE</tt>: Integer (Freeman code)
  *     - Sequence type:
  *       - <tt>CV_SEQ_KIND_GENERIC</tt>: Generic sequence
  *       - <tt>CV_SEQ_KIND_CURVE</tt>: Curve
@@ -421,7 +421,7 @@ rb_pop(VALUE self)
   VALUE object = Qnil;
   VALUE klass = seqblock_class(seq);
   try {
-    if (klass == rb_cFixnum) {
+    if (klass == rb_cInteger) {
       int n = 0;
       cvSeqPop(seq, &n);
       object = INT2FIX(n);
@@ -489,7 +489,7 @@ rb_shift(VALUE self)
 
   VALUE object = Qnil;
   try {
-    if (seqblock_class(seq) == rb_cFixnum) {
+    if (seqblock_class(seq) == rb_cInteger) {
       int n = 0;
       cvSeqPopFront(seq, &n);
       object = INT2NUM(n);
@@ -525,7 +525,7 @@ rb_each(VALUE self)
   if (seq->total > 0) {
     VALUE klass = seqblock_class(seq);
     try {
-      if (klass == rb_cFixnum)
+      if (klass == rb_cInteger)
 	for (int i = 0; i < seq->total; ++i)
 	  rb_yield(INT2NUM(*CV_GET_SEQ_ELEM(int, seq, i)));
       else
@@ -567,10 +567,10 @@ rb_insert(VALUE self, VALUE index, VALUE object)
   Check_Type(index, T_FIXNUM);
   CvSeq *seq = CVSEQ(self);
   VALUE klass = seqblock_class(seq);
-  if (CLASS_OF(object) != klass)
+  if (!rb_obj_is_kind_of(object, klass))
     rb_raise(rb_eTypeError, "arguments should be %s.", rb_class2name(klass));
   try {
-    if (klass == rb_cFixnum) {
+    if (klass == rb_cInteger) {
       int n = NUM2INT(object);
       cvSeqInsert(seq, NUM2INT(index), &n);
     }

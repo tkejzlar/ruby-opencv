@@ -44,14 +44,14 @@ rb_allocate(VALUE klass)
  * Constructor
  *
  * @overload new(seq_flags = CV_SEQ_ELTYPE_POINT | CV_SEQ_KIND_GENERIC, storage = nil)
- *   @param [Fixnum] seq_flags Flags of the created sequence, which are combinations of
+ *   @param [Integer] seq_flags Flags of the created sequence, which are combinations of
  *     the element types and sequence types.
  *     - Element type:
  *       - <tt>CV_SEQ_ELTYPE_POINT</tt>: {CvPoint}
  *       - <tt>CV_32FC2</tt>: {CvPoint2D32f}
  *       - <tt>CV_SEQ_ELTYPE_POINT3D</tt>: {CvPoint3D32f}
- *       - <tt>CV_SEQ_ELTYPE_INDEX</tt>: Fixnum
- *       - <tt>CV_SEQ_ELTYPE_CODE</tt>: Fixnum (Freeman code)
+ *       - <tt>CV_SEQ_ELTYPE_INDEX</tt>: Integer
+ *       - <tt>CV_SEQ_ELTYPE_CODE</tt>: Integer (Freeman code)
  *     - Sequence type:
  *       - <tt>CV_SEQ_KIND_GENERIC</tt>: Generic sequence
  *       - <tt>CV_SEQ_KIND_CURVE</tt>: Curve

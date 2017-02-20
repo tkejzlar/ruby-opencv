@@ -67,7 +67,7 @@ class TestCvSeq < OpenCVTestCase
     
     seq2 = CvSeq.new(CV_SEQ_ELTYPE_INDEX)
     seq2.push(10, 20, 30)
-    assert_equal(Fixnum, seq2[0].class)
+    assert_kind_of(Integer, seq2[0])
     assert_equal(10, seq2[0])
     assert_equal(20, seq2[1])
     assert_equal(30, seq2[2])
@@ -101,7 +101,7 @@ class TestCvSeq < OpenCVTestCase
     seq4 = CvSeq.new(CV_SEQ_ELTYPE_INDEX).push(20, 30)
     seq3.push(seq4)
     assert_equal(3, seq3.total)
-    assert_equal(Fixnum, seq3[0].class)
+    assert_kind_of(Integer, seq3[0])
     assert_equal(10, seq3[0])
     assert_equal(20, seq3[1])
     assert_equal(30, seq3[2])

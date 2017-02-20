@@ -62,7 +62,7 @@ rb_initialize(int argc, VALUE *argv, VALUE self)
     raise_cverror(e);
   }
   CvSeq* self_ptr = CVSEQ(self);
-  cCvSeq::register_elem_class(self_ptr, rb_cFixnum);
+  cCvSeq::register_elem_class(self_ptr, rb_cInteger);
   register_root_object(self_ptr, storage_value);
 
   return self;
@@ -95,7 +95,7 @@ rb_set_origin(VALUE self, VALUE origin)
 /*
  * Returns the chain codes
  * @overload codes
- * @return [Array<Fixnum>] Chain codes
+ * @return [Array<Integer>] Chain codes
  * @opencv_func cvStartReadChainPoints
  * @opencv_func CV_READ_SEQ_ELEM
  */

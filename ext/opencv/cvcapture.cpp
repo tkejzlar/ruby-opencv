@@ -39,7 +39,7 @@ cvcapture_free(void *ptr)
  * Open video file or a capturing device for video capturing
  * @scope class
  * @overload open(dev = nil)
- *   @param dev [String,Fixnum,Simbol,nil] Video capturing device
+ *   @param dev [String,Integer,Simbol,nil] Video capturing device
  *     * If dev is a string (i.e "stream.avi"), reads video stream from a file.
  *     * If dev is a number or symbol (included in CvCapture::INTERFACE), reads video stream from a device.
  *     * If dev is a nil, same as CvCapture.open(:any)
