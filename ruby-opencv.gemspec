@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
-# stub: ruby-opencv 0.0.17.20160717014809 ruby lib
+# stub: ruby-opencv 0.0.18.20170306223602 ruby lib
 # stub: ext/opencv/extconf.rb
 
 Gem::Specification.new do |s|
   s.name = "ruby-opencv".freeze
-  s.version = "0.0.17.20160717014809"
+  s.version = "0.0.18.20170306223602"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["lsxi".freeze, "ser1zw".freeze, "pcting".freeze]
-  s.date = "2016-07-16"
+  s.date = "2017-03-06"
   s.description = "ruby-opencv is a wrapper of OpenCV for Ruby. It helps you to write computer vision programs (e.g. detecting faces from pictures) with Ruby.".freeze
   s.email = ["masakazu.yonekura@gmail.com".freeze, "azariahsawtikes@gmail.com".freeze, "pcting@gmail.com".freeze]
   s.extensions = ["ext/opencv/extconf.rb".freeze]
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/ruby-opencv/ruby-opencv/".freeze
   s.licenses = ["BSD-3-Clause".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze]
-  s.rubygems_version = "2.6.6".freeze
+  s.rubygems_version = "2.6.10".freeze
   s.summary = "OpenCV wrapper for Ruby".freeze
 
   if s.respond_to? :specification_version then
