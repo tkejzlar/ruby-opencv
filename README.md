@@ -1,3 +1,5 @@
+![Build Status with Travis CI](https://travis-ci.org/ruby-opencv/ruby-opencv.svg?branch=master)
+
 # ruby-opencv
 
 An OpenCV wrapper for Ruby.
