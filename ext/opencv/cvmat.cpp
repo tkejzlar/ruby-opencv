@@ -4740,18 +4740,18 @@ rb_flood_fill_bang(int argc, VALUE *argv, VALUE self)
  *
  * @overload find_contours(find_contours_options)
  *   @param find_contours_options [Hash] Options
- *   @option find_contours_options [Symbol] :mode (:list) Retrieval mode.
- *      * :external - retrive only the extreme outer contours
- *      * :list - retrieve all the contours and puts them in the list.
- *      * :ccomp - retrieve all the contours and organizes them into two-level hierarchy:
+ *   @option find_contours_options [Integer] :mode (CV_RETR_LIST) Retrieval mode.
+ *      * CV_RETR_EXTERNAL - retrive only the extreme outer contours
+ *      * CV_RETR_LIST - retrieve all the contours and puts them in the list.
+ *      * CV_RETR_CCOMP - retrieve all the contours and organizes them into two-level hierarchy:
  *        top level are external boundaries of the components, second level are bounda boundaries of the holes
- *      * :tree - retrieve all the contours and reconstructs the full hierarchy of nested contours
+ *      * CV_RETR_TREE - retrieve all the contours and reconstructs the full hierarchy of nested contours
  *        Connectivity determines which neighbors of a pixel are considered.
- *   @option find_contours_options [Symbol] :method (:approx_simple) Approximation method.
- *      * :code - output contours in the Freeman chain code. All other methods output polygons (sequences of vertices).
- *      * :approx_none - translate all the points from the chain code into points;
- *      * :approx_simple - compress horizontal, vertical, and diagonal segments, that is, the function leaves only their ending points;
- *      * :approx_tc89_l1, :approx_tc89_kcos - apply one of the flavors of Teh-Chin chain approximation algorithm.
+ *   @option find_contours_options [Integer] :method (CV_CHAIN_APPROX_SIMPLE) Approximation method.
+ *      * CV_CHAIN_CODE - output contours in the Freeman chain code. All other methods output polygons (sequences of vertices).
+ *      * CV_CHAIN_APPROX_NONE - translate all the points from the chain code into points;
+ *      * CV_CHAIN_APPROX_SIMPLE - compress horizontal, vertical, and diagonal segments, that is, the function leaves only their ending points;
+ *      * CV_CHAIN_APPROX_TC89_L1, CV_CHAIN_APPROX_TC89_KCOS - apply one of the flavors of Teh-Chin chain approximation algorithm.
  *   @option find_contours_options [CvPoint] :offset (CvPoint.new(0, 0)) Offset, by which every contour point is shifted.
  * @return [CvContour, CvChain] Detected contours. If <tt>:method</tt> is <tt>:code</tt>,
  *   returns as <tt>CvChain</tt>, otherwise <tt>CvContour</tt>.
