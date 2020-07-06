@@ -8,7 +8,7 @@ Official OpenCV binary for MinGW32 is no longer distributed, so when you use rub
 ## Requirement
 - Windows 10 64bit
 - [Ruby 2.3.0p0 x64-mingw32 on RubyInstaller](http://rubyinstaller.org/)
-- [Devkit (DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe)](http://rubyinstaller.org/add-ons/devkit/)
+- [Devkit (DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe)](https://rubyinstaller.org/downloads/archives/)
 - [OpenCV 2.4.13](https://sourceforge.net/projects/opencvlibrary/)
 - [CMake 3.6.0 x64](https://cmake.org/)
 
