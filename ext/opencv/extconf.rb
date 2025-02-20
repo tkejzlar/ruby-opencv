@@ -32,12 +32,12 @@ dir_config("libxml2", "/usr/include", "/usr/lib")
 pp incdir
 pp libdir
 
-opencv_headers = ["opencv2/core/core_c.h", "opencv2/core/core.hpp", "opencv2/imgproc/imgproc_c.h",
-                  "opencv2/imgproc/imgproc.hpp", "opencv2/video/tracking.hpp", "opencv2/features2d/features2d.hpp",
-                  "opencv2/flann/flann.hpp", "opencv2/calib3d/calib3d.hpp", "opencv2/objdetect/objdetect.hpp",
-                  "opencv2/legacy/compat.hpp", "opencv2/legacy/legacy.hpp", "opencv2/highgui/highgui_c.h",
-                  "opencv2/highgui/highgui.hpp", "opencv2/photo/photo.hpp"]
-opencv_headers_opt = ["opencv2/nonfree/nonfree.hpp"]
+opencv_headers = ["opencv4/opencv2/core/core_c.h", "opencv4/opencv2/core/core.hpp", "opencv4/opencv2/imgproc/imgproc_c.h",
+                  "opencv4/opencv2/imgproc/imgproc.hpp", "opencv4/opencv2/video/tracking.hpp", "opencv4/opencv2/features2d/features2d.hpp",
+                  "opencv4/opencv2/flann/flann.hpp", "opencv4/opencv2/calib3d/calib3d.hpp", "opencv4/opencv2/objdetect/objdetect.hpp",
+                  "opencv4/opencv2/legacy/compat.hpp", "opencv4/opencv2/legacy/legacy.hpp", "opencv4/opencv2/highgui/highgui_c.h",
+                  "opencv4/opencv2/highgui/highgui.hpp", "opencv4/opencv2/photo/photo.hpp"]
+opencv_headers_opt = ["opencv4/opencv2/nonfree/nonfree.hpp"]
 
 opencv_libraries = ["opencv_calib3d", "opencv_core", "opencv_features2d",
                     "opencv_flann", "opencv_highgui", "opencv_imgproc",
@@ -57,13 +57,6 @@ if $mswin or $mingw
 else
   have_library("stdc++")
 end
-
-opencv_libraries.map! { |v| libdir + '/' +v}
-opencv_libraries_opt.map! { |v| libdir + '/' +v}
-opencv_headers.map! { |v| incdir + '/opencv4/' + v }
-
-pp opencv_libraries
-pp opencv_headers
 
 
 opencv_libraries.each { |lib| raise "#{lib} not found." unless have_library(lib) }
