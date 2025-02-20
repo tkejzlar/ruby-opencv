@@ -26,12 +26,8 @@ end
 # Quick fix for 2.0.0
 # @libdir_basename is set to nil and dir_config() sets invalid libdir '${opencv-dir}/' when --with-opencv-dir option passed.
 @libdir_basename ||= 'lib'
-incdir, libdir = dir_config("opencv", "/usr/local/include", "/usr/local/lib")
+incdir, libdir = dir_config("opencv", "/opt/homebrew/Cellar/opencv/4.11.0_1/include", "/opt/homebrew/Cellar/opencv/4.11.0_1/")
 dir_config("libxml2", "/usr/include", "/usr/lib")
-
-pp @libdir_basename
-pp incdir
-pp libdir
 
 opencv_headers = ["opencv4/opencv2/core/core_c.h", "opencv4/opencv2/core/core.hpp", "opencv4/opencv2/imgproc/imgproc_c.h",
                   "opencv4/opencv2/imgproc/imgproc.hpp", "opencv4/opencv2/video/tracking.hpp", "opencv4/opencv2/features2d/features2d.hpp",
