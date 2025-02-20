@@ -29,6 +29,7 @@ end
 incdir, libdir = dir_config("opencv", "/usr/local/include", "/usr/local/lib")
 dir_config("libxml2", "/usr/include", "/usr/lib")
 
+pp @libdir_basename
 pp incdir
 pp libdir
 
