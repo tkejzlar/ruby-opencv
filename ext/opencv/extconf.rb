@@ -29,11 +29,11 @@ end
 incdir, libdir = dir_config("opencv", "/opt/homebrew/Cellar/opencv/4.11.0_1/include", "/opt/homebrew/Cellar/opencv/4.11.0_1/lib")
 dir_config("libxml2", "/usr/include", "/usr/lib")
 
-opencv_headers = ["opencv4/opencv2/core/core_c.h", "opencv4/opencv2/core/core.hpp", "opencv4/opencv2/imgproc/imgproc_c.h",
-                  "opencv4/opencv2/imgproc/imgproc.hpp", "opencv4/opencv2/video/tracking.hpp", "opencv4/opencv2/features2d/features2d.hpp",
-                  "opencv4/opencv2/flann/flann.hpp", "opencv4/opencv2/calib3d/calib3d.hpp", "opencv4/opencv2/objdetect/objdetect.hpp",
-                  "opencv4/opencv2/legacy/compat.hpp", "opencv4/opencv2/legacy/legacy.hpp", "opencv4/opencv2/highgui/highgui_c.h",
-                  "opencv4/opencv2/highgui/highgui.hpp", "opencv4/opencv2/photo/photo.hpp"]
+opencv_headers = ["/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/core_c.h", "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/core/core.hpp", "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/imgproc/imgproc_c.h",
+                  "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/imgproc/imgproc.hpp", "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/video/tracking.hpp", "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/features2d/features2d.hpp",
+                  "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/flann/flann.hpp", "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/calib3d/calib3d.hpp", "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/objdetect/objdetect.hpp",
+                  "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/legacy/compat.hpp", "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/legacy/legacy.hpp", "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/highgui/highgui_c.h",
+                  "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/highgui/highgui.hpp", "/opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4/opencv2/photo/photo.hpp"]
 opencv_headers_opt = ["opencv4/opencv2/nonfree/nonfree.hpp"]
 
 opencv_libraries = ["opencv_calib3d", "opencv_core", "opencv_features2d",
