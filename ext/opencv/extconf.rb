@@ -58,8 +58,8 @@ else
   have_library("stdc++")
 end
 
-pp opencv_libraries.map { |v| libdir +  v}
-pp opencv_headers.map { |v| incdir + v }
+opencv_libraries.map { |v| libdir + '/' +v}
+popencv_headers.map { |v| incdir + '/opencv4/' + v }
 
 opencv_libraries.each { |lib| raise "#{lib} not found." unless have_library(lib) }
 opencv_libraries_opt.each { |lib| warn "#{lib} not found." unless have_library(lib) }
